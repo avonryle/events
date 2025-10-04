@@ -49,6 +49,7 @@ const emitter = new EventEmitter<Events>();
 emitter.on("ready", () => console.log("Ready!"));
 emitter.emit("ready");
 ```
+check [demos](https://github.com/avonryle/events/tree/main/demos) for more detailed examples.
 
 ## 🚀 Features
 
