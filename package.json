@@ -1,6 +1,6 @@
 {
   "name": "@avonrylew/events",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "A lightweight, strongly typed, featureful and high-performance event emitter for modern JavaScript runtimes. Built with speed, simplicity and feature completeness in mind.",
   "keywords": [
     "event",
@@ -27,4 +27,3 @@
   "publishConfig": {
     "access": "public"
   }
-}
