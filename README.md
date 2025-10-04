@@ -62,7 +62,7 @@ emitter.emit("ready");
 | wait() Promise-based listener | ✅           | ❌    | ❌                 | ❌            |
 | max() limit max listeners | ✅               | ❌    | ❌                 | ❌            |
 | TypeScript generic support | ✅ Strong       | ✅    | ✅                 | ⚠️ Partial    |
-| Lightweight (unpacked size)    | 5.46 kB               | 105 kB    | ✅ 5.3 kB                  | ✅ 73.4 kB      | 
+| Lightweight (unpacked size)    | ✅ 5.46 kB               | ✅ 105 kB    | ✅ 5.3 kB                  | ✅ 73.4 kB      | 
 # Event Emitter Libraries Comparison
 
 ## 🧠 Memory Usage Comparison
