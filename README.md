@@ -2,20 +2,6 @@
 A lightweight, strongly typed, featureful and high-performance event emitter for modern JavaScript runtimes.
 Built with speed, simplicity and feature completeness in mind.
 
-```typescript
-import { EventEmitter ) from '@avonrylew/events';
-
-interface Events {
-  ready: () => void;
-  data: (value: string) => void;
-}
-
-const emitter = new EventEmitter<Events>();
-
-emitter.on("ready", () => console.log("Ready!"));
-emitter.emit("ready");
-```
-
 ## ⚙️ Installation
 
 ```bash
@@ -49,6 +35,21 @@ emitter.names();          // All event names
 await emitter.wait("ready", 1000); // Promise-based wait with timeout
 emitter.max(20);          // Set max listeners
 ```
+## 🧩 Usage
+```typescript
+import { EventEmitter ) from '@avonrylew/events';
+
+interface Events {
+  ready: () => void;
+  data: (value: string) => void;
+}
+
+const emitter = new EventEmitter<Events>();
+
+emitter.on("ready", () => console.log("Ready!"));
+emitter.emit("ready");
+```
+
 ## 🚀 Features
 
 | Feature                  | @avonrylew/events | tseep | tiny-typed-emitter | eventemitter3 |
