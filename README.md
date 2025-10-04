@@ -64,7 +64,6 @@ check [demos](https://github.com/avonryle/events/tree/main/demos) for more detai
 | max() limit max listeners | ✅               | ❌    | ❌                 | ❌            |
 | TypeScript generic support | ✅ Strong       | ✅    | ✅                 | ⚠️ Partial    |
 | Lightweight (unpacked size)    | ✅ 5.46 kB               | ✅ 105 kB    | ✅ 5.3 kB                  | ✅ 73.4 kB      | 
-# Event Emitter Libraries Comparison
 
 ## 🧠 Memory Usage Comparison
 The following table shows the memory consumption when creating 1000 instances with 10 listeners each (measured on Bun runtime with GC exposed):
