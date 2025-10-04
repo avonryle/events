@@ -77,8 +77,8 @@ The following table shows the memory consumption when creating 1000 instances wi
 Performance benchmarks measured using benchmark.js (average of 90+ samples on Bun runtime):
 | Test | @avonrylew/events | tseep | tiny-typed-emitter | eventemitter3 |
 |------|---------------|-------|--------------------|---------------|
-| on + emit (1 listener) | 264,693 ops/s ⚡| 168,335 | 29,327 | 107,063 |
-| on + emit (10 listeners) | 41,470 ops/s | 33,064 | 22,017 | 32,549 |
+| on + emit (1 listener) | 264,693 ops/s ⚡| 168,335 ops/s | 29,327 ops/s | 107,063 ops/s |
+| on + emit (10 listeners) | 41,470 ops/s ⚡| 33,064 ops/s | 22,017 ops/s | 32,549 ops/s |
 | once + emit | 28,101 | 60,102 ⚡ | 3,042 | 18,849 |
 | emit (multi args) | 48,077 | 65,541 ⚡ | 17,065 | 49,568 |
 | on + off | 23,587 | 20,947 | 4,242 | 31,722 ⚡ |
