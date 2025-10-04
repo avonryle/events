@@ -18,17 +18,17 @@ emitter.emit("ready");
 
 ## 🚀 Features
 
-| Feature                  | CustomEmitter | tseep | tiny-typed-emitter | eventemitter3 |
-|--------------------------|---------------|-------|--------------------|---------------|
-| on() / once() / off()    | ✅            | ✅    | ✅                 | ✅            |
-| Wildcard onAny() / offAny() | ✅         | ❌    | ❌                 | ❌            |
-| clear() (all / specific) | ✅            | ❌    | ❌                 | ✅            |
-| count() listener count   | ✅            | ❌    | ✅                 | ✅            |
-| names() list event names | ✅            | ❌    | ❌                 | ❌            |
-| wait() Promise-based listener | ✅       | ❌    | ❌                 | ❌            |
-| max() limit max listeners | ✅           | ❌    | ❌                 | ❌            |
-| TypeScript generic support | ✅ Strong  | ✅    | ✅                 | ⚠️ Partial    |
-| Lightweight (no deps)    | ✅            | ✅    | ✅                 | ✅            |
+| Feature                  | @avonrylew/events | tseep | tiny-typed-emitter | eventemitter3 |
+|--------------------------|-------------------|-------|--------------------|---------------|
+| on() / once() / off()    | ✅                | ✅    | ✅                 | ✅            |
+| Wildcard onAny() / offAny() | ✅             | ❌    | ❌                 | ❌            |
+| clear() (all / specific) | ✅                | ❌    | ❌                 | ✅            |
+| count() listener count   | ✅                | ❌    | ✅                 | ✅            |
+| names() list event names | ✅                | ❌    | ❌                 | ❌            |
+| wait() Promise-based listener | ✅           | ❌    | ❌                 | ❌            |
+| max() limit max listeners | ✅               | ❌    | ❌                 | ❌            |
+| TypeScript generic support | ✅ Strong       | ✅    | ✅                 | ⚠️ Partial    |
+| Lightweight (no deps)    | ✅                | ✅    | ✅                 | ✅            |
 
 ## ⚙️ Installation
 
