@@ -1,14 +1,14 @@
 # 📦 @avonrylew/events
-
-A lightweight, TypeScript-first, and high-performance event emitter for modern JavaScript runtimes — built for simplicity, speed, and feature completeness.
+A lightweight, strongly typed, featureful and high-performance event emitter for modern JavaScript runtimes.
+Built with speed, simplicity and feature completeness in mind.
 
 ```typescript
-import { EventEmitter } from "@avonrylew/events";
+import { EventEmitter ) from '@avonrylew/events';
 
-type Events = {
+interface Events {
   ready: () => void;
   data: (value: string) => void;
-};
+}
 
 const emitter = new EventEmitter<Events>();
 
@@ -16,33 +16,15 @@ emitter.on("ready", () => console.log("Ready!"));
 emitter.emit("ready");
 ```
 
-## 🚀 Features
-
-| Feature                  | @avonrylew/events | tseep | tiny-typed-emitter | eventemitter3 |
-|--------------------------|-------------------|-------|--------------------|---------------|
-| on() / once() / off()    | ✅                | ✅    | ✅                 | ✅            |
-| Wildcard onAny() / offAny() | ✅             | ❌    | ❌                 | ❌            |
-| clear() (all / specific) | ✅                | ❌    | ❌                 | ✅            |
-| count() listener count   | ✅                | ❌    | ✅                 | ✅            |
-| names() list event names | ✅                | ❌    | ❌                 | ❌            |
-| wait() Promise-based listener | ✅           | ❌    | ❌                 | ❌            |
-| max() limit max listeners | ✅               | ❌    | ❌                 | ❌            |
-| TypeScript generic support | ✅ Strong       | ✅    | ✅                 | ⚠️ Partial    |
-| Lightweight (no deps)    | ✅                | ✅    | ✅                 | ✅            |
-
 ## ⚙️ Installation
 
 ```bash
 npm install @avonrylew/events
 # or
 bun add @avonrylew/events
-# or
-pnpm add @avonrylew/events
-# or
-yarn add @avonrylew/events
 ```
 
-## 🧩 API Overview
+## 🧩 Overview
 
 ```typescript
 const emitter = new EventEmitter<MyEvents>();
@@ -67,10 +49,37 @@ emitter.names();          // All event names
 await emitter.wait("ready", 1000); // Promise-based wait with timeout
 emitter.max(20);          // Set max listeners
 ```
+## 🚀 Features
 
-## 🧾 Design Goals
+| Feature                  | @avonrylew/events | tseep | tiny-typed-emitter | eventemitter3 |
+|--------------------------|-------------------|-------|--------------------|---------------|
+| on() / once() / off()    | ✅                | ✅    | ✅                 | ✅            |
+| Wildcard onAny() / offAny() | ✅             | ❌    | ❌                 | ❌            |
+| clear() (all / specific) | ✅                | ❌    | ❌                 | ✅            |
+| count() listener count   | ✅                | ❌    | ✅                 | ✅            |
+| names() list event names | ✅                | ❌    | ❌                 | ❌            |
+| wait() Promise-based listener | ✅           | ❌    | ❌                 | ❌            |
+| max() limit max listeners | ✅               | ❌    | ❌                 | ❌            |
+| TypeScript generic support | ✅ Strong       | ✅    | ✅                 | ⚠️ Partial    |
+| Lightweight (no deps)    | ✅                | ✅    | ✅                 | ✅            |
+# Event Emitter Libraries Comparison
 
-- ⚡ **Performance-focused**: optimized listener maps & low overhead dispatch
-- 🧠 **Type-safe**: full generic event typing with inferred parameters
-- 🧩 **Feature-complete**: includes promises, wildcards, and listener management
-- 💡 **Lightweight**: zero dependencies and <2KB minified
+## 🧠 Memory Usage Comparison
+The following table shows the memory consumption when creating 1000 instances with 10 listeners each (measured on Bun runtime with GC exposed):
+| Library | Heap Δ (MB) | RSS Δ (MB) | Total Δ (MB) |
+|---------|-------------|------------|--------------|
+| CustomEmitter | 0.03 | 6.45 | 6.49 |
+| tseep | 0.08 | 8.39 | 8.54 |
+| tiny-typed-emitter | 0.04 | 0.39 | 0.46 |
+| eventemitter3 | 0.00 | 0.63 | 0.63 |
+
+## ⚡Performance Benchmark
+Performance benchmarks measured using benchmark.js (average of 90+ samples on Bun runtime):
+| Test | CustomEmitter | tseep | tiny-typed-emitter | eventemitter3 |
+|------|---------------|-------|--------------------|---------------|
+| on + emit (1 listener) | 264,693 ops/s | 168,335 | 29,327 | 107,063 |
+| on + emit (10 listeners) | 41,470 ops/s | 33,064 | 22,017 | 32,549 |
+| once + emit | 28,101 | 60,102 ⚡ | 3,042 | 18,849 |
+| emit (multi args) | 48,077 | 65,541 ⚡ | 17,065 | 49,568 |
+| on + off | 23,587 | 20,947 | 4,242 | 31,722 ⚡ |
+
