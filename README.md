@@ -56,9 +56,9 @@ emitter.emit("ready");
 |--------------------------|-------------------|-------|--------------------|---------------|
 | on() / once() / off()    | ✅                | ✅    | ✅                 | ✅            |
 | Wildcard onAny() / offAny() | ✅             | ❌    | ❌                 | ❌            |
-| clear() (all / specific) | ✅                | ❌    | ❌                 | ✅            |
-| count() listener count   | ✅                | ❌    | ✅                 | ✅            |
-| names() list event names | ✅                | ❌    | ❌                 | ❌            |
+| clear() (all / specific) | ✅                | ❌    | ✅                  | ✅            |
+| count() listener count   | ✅                | ❌    | ⚠️ Partial         | ✅            |
+| names() list event names | ✅                | ❌    | ❌                 | ✅            |
 | wait() Promise-based listener | ✅           | ❌    | ❌                 | ❌            |
 | max() limit max listeners | ✅               | ❌    | ❌                 | ❌            |
 | TypeScript generic support | ✅ Strong       | ✅    | ✅                 | ⚠️ Partial    |
