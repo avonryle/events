@@ -4,7 +4,7 @@ const {EventEmitter} = require('@avonrylew/events')
 const emitter = new EventEmitter();
 
 // Set max listeners to 2 for demonstration
-emitter.max(2);
+emitter.max(2)
 
 console.log('=== EventEmitter Demo ===');
 
