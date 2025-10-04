@@ -68,16 +68,16 @@ emitter.max(20);          // Set max listeners
 The following table shows the memory consumption when creating 1000 instances with 10 listeners each (measured on Bun runtime with GC exposed):
 | Library | Heap Δ (MB) | RSS Δ (MB) | Total Δ (MB) |
 |---------|-------------|------------|--------------|
-| CustomEmitter | 0.03 | 6.45 | 6.49 |
+| @avonrylew/events | 0.03 | 6.45 | 6.49 |
 | tseep | 0.08 | 8.39 | 8.54 |
 | tiny-typed-emitter | 0.04 | 0.39 | 0.46 |
 | eventemitter3 | 0.00 | 0.63 | 0.63 |
 
 ## ⚡Performance Benchmark
 Performance benchmarks measured using benchmark.js (average of 90+ samples on Bun runtime):
-| Test | CustomEmitter | tseep | tiny-typed-emitter | eventemitter3 |
+| Test | @avonrylew/events | tseep | tiny-typed-emitter | eventemitter3 |
 |------|---------------|-------|--------------------|---------------|
-| on + emit (1 listener) | 264,693 ops/s | 168,335 | 29,327 | 107,063 |
+| on + emit (1 listener) | 264,693 ops/s ⚡| 168,335 | 29,327 | 107,063 |
 | on + emit (10 listeners) | 41,470 ops/s | 33,064 | 22,017 | 32,549 |
 | once + emit | 28,101 | 60,102 ⚡ | 3,042 | 18,849 |
 | emit (multi args) | 48,077 | 65,541 ⚡ | 17,065 | 49,568 |
