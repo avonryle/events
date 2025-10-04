@@ -1,6 +1,5 @@
-__tests__
-node_modules
-.gitignore
-bun.lock
-
-scripts
+./__tests__
+./node_modules
+./.gitignore
+./bun.lock
+./demons
