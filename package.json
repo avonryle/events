@@ -17,14 +17,12 @@
   },
   "license": "MIT",
   "author": "avonryle",
-  "main": "./index.min.js",
-  "module": "./index.ts",
-  "files": [
-    "README.md",
-    "LICENSE"
-  ],
+  "exports": "./index.min.js",
   "scripts": {
-    "build": "bun build ./index.ts --outfile ./index.min.js --minify --target node"
+    "build": "bun build ./index.ts --outfile ./index.min.js --minify --target node",
+    "test:bench": "bun run __tests__/benchmark.ts",
+    "test:feature": "bun run __tests__/feature.ts",
+    "test:memory": "bun run __tests__/memory.ts"
   },
   "publishConfig": {
     "access": "public"
