@@ -14,7 +14,7 @@ interface MyEvents {
 const emitter = new EventEmitter<MyEvents>();
 
 // Set max listeners to 2 for demonstration
-emitter.max(2);
+emitter.max(2)
 
 console.log('=== EventEmitter Demo ===');
 
