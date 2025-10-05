@@ -2,7 +2,8 @@
 
 ## Description
 
-A high-performance, type-safe event emitter that prioritizes speed without sacrificing features. Designed for scenarios where millions of events per second matter, while maintaining full TypeScript support and a rich API including wildcard listeners, promise-based event waiting, and comprehensive listener management. \n
+A high-performance, type-safe event emitter that prioritizes speed without sacrificing features. Designed for scenarios where millions of events per second matter, while maintaining full TypeScript support and a rich API including wildcard listeners, promise-based event waiting, and comprehensive listener management.
+
 Outperforms eventemitter3 in single-listener scenarios (the most common use case) while staying competitive across all workloads.
 
 ## Installation
