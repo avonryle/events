@@ -6,6 +6,8 @@ A high-performance, type-safe event emitter that prioritizes speed without sacri
 
 Outperforms eventemitter3 in single-listener scenarios (the most common use case) while staying competitive across all workloads.
 
+THIS PROJECT IS CURRENTLY IN ALPHA TESTING. EXPECT ISSUES (honestly just memory leaks at the moment, everything else should work fine.)
+
 ## Installation
 ```bash
 npm install @avonrylew/events
