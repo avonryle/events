@@ -1,14 +1,9 @@
-// vibe coded benchmarker. 
-// requires installation of tseep, tte and ee3
-
 import Benchmark from 'benchmark';
-import { EventEmitter as CustomEmitter } from '../index';
+//@ts-ignore
+import { EventEmitter as CustomEmitter } from '../index.min';
 import { EventEmitter as TseepEmitter } from 'tseep';
 import { TypedEmitter } from 'tiny-typed-emitter';
 import EventEmitter3 from 'eventemitter3';
-
-const LISTENER_COUNT = 10;
-const EMIT_COUNT = 1000;
 
 console.log('='.repeat(80));
 console.log('EVENT EMITTER BENCHMARK COMPARISON');
@@ -17,162 +12,168 @@ console.log();
 
 const suite = new Benchmark.Suite();
 
+// Pre-setup instances for single listener test
+//@ts-ignore
+const customEE1 = new CustomEmitter();
+const tseepEE1 = new TseepEmitter();
+const tinyEE1 = new TypedEmitter();
+const ee3EE1 = new EventEmitter3();
+
+customEE1.on('test', () => {});
+tseepEE1.on('test', () => {});
+tinyEE1.on('test', () => {});
+ee3EE1.on('test', () => {});
+
+// Pre-setup instances for 10 listeners test
+//@ts-ignore
+const customEE10 = new CustomEmitter();
+const tseepEE10 = new TseepEmitter();
+const tinyEE10 = new TypedEmitter();
+const ee3EE10 = new EventEmitter3();
+
+for (let i = 0; i < 10; i++) {
+  customEE10.on('test', () => {});
+  tseepEE10.on('test', () => {});
+  tinyEE10.on('test', () => {});
+  ee3EE10.on('test', () => {});
+}
+
+// Pre-setup instances for multiple args test
+//@ts-ignore
+const customEEArgs = new CustomEmitter();
+const tseepEEArgs = new TseepEmitter();
+const tinyEEArgs = new TypedEmitter();
+const ee3EEArgs = new EventEmitter3();
+
+customEEArgs.on('multi', () => {});
+tseepEEArgs.on('multi', () => {});
+tinyEEArgs.on('multi', () => {});
+ee3EEArgs.on('multi', () => {});
+
 suite
-  .add('CustomEmitter: on + emit (single listener)', () => {
-    const ee = new CustomEmitter<any>();
-    ee.on('test', () => {});
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.emit('test', 'data');
-    }
+  // Single listener emit benchmark
+  .add('CustomEmitter: emit (1 listener)', () => {
+    customEE1.emit('test', 'data');
   })
-  .add('tseep: on + emit (single listener)', () => {
-    const ee = new TseepEmitter();
-    ee.on('test', () => {});
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.emit('test', 'data');
-    }
+  .add('tseep: emit (1 listener)', () => {
+    tseepEE1.emit('test', 'data');
   })
-  .add('tiny-typed-emitter: on + emit (single listener)', () => {
-    const ee = new TypedEmitter();
-    ee.on('test', () => {});
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.emit('test', 'data');
-    }
+  .add('tiny-typed-emitter: emit (1 listener)', () => {
+    tinyEE1.emit('test', 'data');
   })
-  .add('eventemitter3: on + emit (single listener)', () => {
-    const ee = new EventEmitter3();
-    ee.on('test', () => {});
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.emit('test', 'data');
-    }
+  .add('eventemitter3: emit (1 listener)', () => {
+    ee3EE1.emit('test', 'data');
   })
 
-  .add(`CustomEmitter: on + emit (${LISTENER_COUNT} listeners)`, () => {
-    const ee = new CustomEmitter<any>();
-    for (let i = 0; i < LISTENER_COUNT; i++) {
-      ee.on('test', () => {});
-    }
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.emit('test', 'data');
-    }
+  // 10 listeners emit benchmark
+  .add('CustomEmitter: emit (10 listeners)', () => {
+    customEE10.emit('test', 'data');
   })
-  .add(`tseep: on + emit (${LISTENER_COUNT} listeners)`, () => {
-    const ee = new TseepEmitter();
-    for (let i = 0; i < LISTENER_COUNT; i++) {
-      ee.on('test', () => {});
-    }
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.emit('test', 'data');
-    }
+  .add('tseep: emit (10 listeners)', () => {
+    tseepEE10.emit('test', 'data');
   })
-  .add(`tiny-typed-emitter: on + emit (${LISTENER_COUNT} listeners)`, () => {
-    const ee = new TypedEmitter();
-    for (let i = 0; i < LISTENER_COUNT; i++) {
-      ee.on('test', () => {});
-    }
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.emit('test', 'data');
-    }
+  .add('tiny-typed-emitter: emit (10 listeners)', () => {
+    tinyEE10.emit('test', 'data');
   })
-  .add(`eventemitter3: on + emit (${LISTENER_COUNT} listeners)`, () => {
-    const ee = new EventEmitter3();
-    for (let i = 0; i < LISTENER_COUNT; i++) {
-      ee.on('test', () => {});
-    }
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.emit('test', 'data');
-    }
+  .add('eventemitter3: emit (10 listeners)', () => {
+    ee3EE10.emit('test', 'data');
   })
 
+  // once + emit benchmark (this one needs setup per iteration)
   .add('CustomEmitter: once + emit', () => {
-    const ee = new CustomEmitter<any>();
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.once('test', () => {});
-      ee.emit('test', 'data');
-    }
+    //@ts-ignore
+    const ee = new CustomEmitter();
+    ee.once('test', () => {});
+    ee.emit('test', 'data');
   })
   .add('tseep: once + emit', () => {
     const ee = new TseepEmitter();
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.once('test', () => {});
-      ee.emit('test', 'data');
-    }
+    ee.once('test', () => {});
+    ee.emit('test', 'data');
   })
   .add('tiny-typed-emitter: once + emit', () => {
     const ee = new TypedEmitter();
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.once('test', () => {});
-      ee.emit('test', 'data');
-    }
+    ee.once('test', () => {});
+    ee.emit('test', 'data');
   })
   .add('eventemitter3: once + emit', () => {
     const ee = new EventEmitter3();
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.once('test', () => {});
-      ee.emit('test', 'data');
-    }
+    ee.once('test', () => {});
+    ee.emit('test', 'data');
   })
 
-  .add('CustomEmitter: emit with multiple args', () => {
-    const ee = new CustomEmitter<any>();
-    ee.on('multi', () => {});
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.emit('multi', 42, 'test', true, { key: 'value' });
-    }
+  // Multiple args benchmark
+  .add('CustomEmitter: emit (multiple args)', () => {
+    customEEArgs.emit('multi', 42, 'test', true, { key: 'value' });
   })
-  .add('tseep: emit with multiple args', () => {
-    const ee = new TseepEmitter();
-    ee.on('multi', () => {});
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.emit('multi', 42, 'test', true, { key: 'value' });
-    }
+  .add('tseep: emit (multiple args)', () => {
+    tseepEEArgs.emit('multi', 42, 'test', true, { key: 'value' });
   })
-  .add('tiny-typed-emitter: emit with multiple args', () => {
-    const ee = new TypedEmitter();
-    ee.on('multi', () => {});
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.emit('multi', 42, 'test', true, { key: 'value' });
-    }
+  .add('tiny-typed-emitter: emit (multiple args)', () => {
+    tinyEEArgs.emit('multi', 42, 'test', true, { key: 'value' });
   })
-  .add('eventemitter3: emit with multiple args', () => {
-    const ee = new EventEmitter3();
-    ee.on('multi', () => {});
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.emit('multi', 42, 'test', true, { key: 'value' });
-    }
+  .add('eventemitter3: emit (multiple args)', () => {
+    ee3EEArgs.emit('multi', 42, 'test', true, { key: 'value' });
   })
 
+  // on + off benchmark
   .add('CustomEmitter: on + off', () => {
-    const ee = new CustomEmitter<any>();
+    //@ts-ignore
+    const ee = new CustomEmitter();
     const fn = () => {};
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.on('test', fn);
-      ee.off('test', fn);
-    }
+    ee.on('test', fn);
+    ee.off('test', fn);
   })
   .add('tseep: on + off', () => {
     const ee = new TseepEmitter();
     const fn = () => {};
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.on('test', fn);
-      ee.off('test', fn);
-    }
+    ee.on('test', fn);
+    ee.off('test', fn);
   })
   .add('tiny-typed-emitter: on + off', () => {
     const ee = new TypedEmitter();
     const fn = () => {};
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.on('test', fn);
-      ee.off('test', fn);
-    }
+    ee.on('test', fn);
+    ee.off('test', fn);
   })
   .add('eventemitter3: on + off', () => {
     const ee = new EventEmitter3();
     const fn = () => {};
-    for (let i = 0; i < EMIT_COUNT; i++) {
-      ee.on('test', fn);
-      ee.off('test', fn);
-    }
+    ee.on('test', fn);
+    ee.off('test', fn);
+  })
+
+  // Listener addition benchmark
+  .add('CustomEmitter: add listener', () => {
+    //@ts-ignore
+    const ee = new CustomEmitter();
+    ee.on('test', () => {});
+  })
+  .add('tseep: add listener', () => {
+    const ee = new TseepEmitter();
+    ee.on('test', () => {});
+  })
+  .add('tiny-typed-emitter: add listener', () => {
+    const ee = new TypedEmitter();
+    ee.on('test', () => {});
+  })
+  .add('eventemitter3: add listener', () => {
+    const ee = new EventEmitter3();
+    ee.on('test', () => {});
+  })
+
+  // emit with no args benchmark
+  .add('CustomEmitter: emit (no args)', () => {
+    customEE1.emit('test');
+  })
+  .add('tseep: emit (no args)', () => {
+    tseepEE1.emit('test');
+  })
+  .add('tiny-typed-emitter: emit (no args)', () => {
+    tinyEE1.emit('test');
+  })
+  .add('eventemitter3: emit (no args)', () => {
+    ee3EE1.emit('test');
   })
 
   .on('cycle', (event: Benchmark.Event) => {
@@ -201,23 +202,24 @@ suite
       );
 
       console.log(`\n${category}:`);
-      console.log('-'.repeat(80));
-
-      benches.forEach((bench) => {
+      
+      const tableData = benches.map((bench) => {
         const lib = (bench.name as string).split(':')[0];
-        const ops = (bench.hz || 0).toFixed(2);
+        const ops = (bench.hz || 0).toFixed(0);
         const relative = ((bench.hz || 0) / (fastest.hz || 1) * 100).toFixed(2);
         const isFastest = bench === fastest;
 
-        console.log(
-          `  ${lib.padEnd(25)} ${ops.padStart(15)} ops/sec  ${relative.padStart(6)}%${
-            isFastest ? '  ⚡ FASTEST' : ''
-          }`
-        );
+        return {
+          Library: lib,
+          'ops/sec': parseInt(ops).toLocaleString(),
+          'Relative': `${relative}%`,
+          '': isFastest ? '⚡ FASTEST' : ''
+        };
       });
+
+      console.table(tableData);
     });
 
-    console.log();
     console.log('='.repeat(80));
   })
   .run({ async: false });
