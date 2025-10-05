@@ -97,7 +97,7 @@ emitter.clear(); // Remove all listeners
 | add listener | 37,202,834 | 1,786,343 | 12,220,241 | 84,448,430 ⚡ |
 | emit (no args) | 44,523,204 | 55,132,587 | 63,401,344 ⚡ | 35,761,228 |
 
-*All values in ops/sec. ⚡ indicates fastest in category.*
+*All values in ops/sec. ⚡ indicates fastest in category.* \n
 *Benchmarks run on Bun runtime using [benchmark.ts](https://github.com/avonryle/events/blob/main/__tests__/benchmark.ts)*
 
 ## Memory Usage Comparison
