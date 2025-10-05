@@ -98,7 +98,8 @@ emitter.clear(); // Remove all listeners
 | add listener | 37,202,834 | 1,786,343 | 12,220,241 | 84,448,430 ⚡ |
 | emit (no args) | 44,523,204 | 55,132,587 | 63,401,344 ⚡ | 35,761,228 |
 
-*All values in ops/sec. ⚡ indicates fastest in category.* \n
+*All values in ops/sec. ⚡ indicates fastest in category.* 
+
 *Benchmarks run on Bun runtime using [benchmark.ts](https://github.com/avonryle/events/blob/main/__tests__/benchmark.ts)*
 
 ## Memory Usage Comparison
@@ -109,6 +110,5 @@ The following table shows the memory consumption when creating 1000 instances wi
 | tseep | 0.08 | 8.39 | 8.54 |
 | tiny-typed-emitter | 0.04 | 0.39 | 0.46 |
 | eventemitter3 | 0.00 | 0.63 | 0.63 |
-
 
 *Memory test run on Bun runtime using [memory.ts](https://github.com/avonryle/events/blob/main/__tests__/memory-test.ts).*
