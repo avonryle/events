@@ -67,7 +67,6 @@ export class EventEmitter<T extends EventMap> {
   emit<K extends EventKey<T>>(k: K, a?: any, b?: any, c?: any, d?: any, e?: any): boolean {
   const l = this.e[k];
   
-  // Fast path for most common case: single listener, 0-1 args
   if (typeof l === 'function') {
     const al = arguments.length - 1;
     if (al === 0) { l(); return true; }
@@ -273,3 +272,4 @@ export class EventEmitter<T extends EventMap> {
 }
 
 export default EventEmitter;
+
